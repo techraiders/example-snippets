@@ -14,4 +14,5 @@ console.log(wrap);
 const object = {message: 'Hello world'};
 const wrapped = wrap(object);
 
-console.log(wrapped.message);
+console.log(wrapped.message); // "Reading property message"
+// "Hello world"
