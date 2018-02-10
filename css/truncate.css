@@ -1,0 +1,17 @@
+/* All the following are required, so the text must be in a single straight line that overflows a box where that overflow is hidden. */
+
+.truncate {
+  width: 250px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/*
+NOTE:
+
+Text-overflow only occurs when the container's overflow property has the value hidden, scroll or auto and white-space: nowrap;
+
+Text overflow can only happen on block or inline-block level elements, because the element needs to have a width in order to be overflow-ed. The overflow happens in the direction as determined by the direction property or related attributes.
+
+*/

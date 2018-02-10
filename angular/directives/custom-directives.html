@@ -1,0 +1,27 @@
+<body ng-app="app">
+  <div ng-controller="emp">
+    <div my-info-msg>
+    </div>
+    <my-info-msg></my-info-msg>
+  </div>
+</body>
+
+<script>
+  var app = angular.module('app', []);
+  
+  app.controller('emp', ['$scope', function($scope) {
+    $scope.msg = 'This is a message';
+  }]);
+  
+  <!-- CUSTOM DIRECTIVES WITH BINDING EXPRESSION -->
+  app.directive('myInfoMsg', function() {
+    return {
+      /* Here I have not restricted this directive to element, attribute etc.
+      So it can be used as an element or as an attribute */
+      
+      template: '<strong> {{ msg }}</strong>'
+      /* The whole value of template property injected as it is, and
+      scope of this controller evaluates and substitutes the value of its expression */
+    }
+  });
+</script>

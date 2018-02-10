@@ -1,0 +1,41 @@
+/**************** BOOLEAN LAWS | BOOLEAN ALGEBRA ***************/
+
+1. Commutative law: Any binary operation which satisfies the following expression is referred to as commutative operation.
+    i. A.B = B.A
+    ii. A + B = B + A
+    Commutative law states that changing the sequence of variables does not have any effect on the output of a logic value.
+    
+2. Associative law: This law states that the order in which the logic operations are performed is irrelevant as their effect is the same.
+    i. (A.B).C = A.(B.C)
+    ii. (A+B)+C = A+(B+C)
+    
+3. Distributive law
+    i. A.(B+C)=A.B+A.C
+
+4. AND law: Following laws use the AND operation. Therefore they're called as AND laws.
+    i. A.0 = 0
+    ii. A.1 = A
+    iii. A.A = A
+    iv. A.(!A) = = 0
+    
+5. OR law: Following las uses the NOT operation. Therefore they're called as OR laws.
+    i. A + 0 = A
+    ii. A + 1 = 1
+    iii. A + A = A
+    iv. A + !A = 1
+    
+6. INVERSION law: This law uses the NOT operation. The inversion law states that double inversion of a variable results in the original
+    variable itself.
+    i. !!A = A
+    
+7. De Morgan's Theorem: De Morgan has suggested two theorems which are extremely useful in Boolean Algebra. The two theorems are discussed below.
+    i. !(A.B) = !A + !B 
+      NAND = Bubbled OR
+      
+    ii. !(A+B) = (!A).(!B)
+        NOR = Bubbled AND
+        
+        
+ Reference:
+    1. https://www.tutorialspoint.com/computer_logical_organization/boolean_algebra.htm
+    2. http://www.electronics-tutorials.ws/boolean/bool_6.html

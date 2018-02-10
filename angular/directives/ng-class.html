@@ -1,0 +1,70 @@
+<ul>
+  <li ng-repeat="item in items | filter: search"
+  ng-class="{'over-thirty': item.age > 30, 'under-thirty': item.age < 30}">
+  
+  <li ng-repeat="item in items | filter: search"
+  ng-class="item.age > 29 ? 'over-thirty' : 'under-thirty'">
+<ul>
+  
+<!-- whatever is typed into this input will be used as the class for the div below -->
+<input type="text" ng-model="textType">
+
+<!-- the class will be whatever is typed into the input box above -->
+<div ng-class="textType">Look! I'm Words!</div>
+  
+
+  
+<!-- both input boxes below will be classes for the div -->
+<input type="text" ng-model="styleOne">
+<input type="text" ng-model="styleTwo">
+
+<!-- this div will take on both classes from above -->
+<div ng-class="[styleOne, styleTwo]">Look! I'm Words!</div>
+  
+  
+
+<div ng-class="$even ? 'even-row' : 'odd-row'"></div>
+<div ng-class="$variableToEvaluate ? 'class-if-true' : 'class-if-false'"></div>
+
+  
+<!-- add a class to the first item -->
+<ul>
+    <li ng-class="{ 'text-success': $first }" ng-repeat="item in items">{{ item.name }}</li>
+</ul>
+
+<!-- add a class to the last item -->
+<ul>
+    <li ng-class="{ 'text-danger': $last }" ng-repeat="item in items">{{ item.name }}</li>
+</ul>
+
+<!-- add a class to the even items and a different class to the odd items -->
+<ul>
+    <li ng-class="{ 'text-info': $even, 'text-danger': $odd }" ng-repeat="item in items">{{ item.name }}</li>
+</ul>
+  
+  
+<!-- example with string syntax -->
+<!-- use the type variable as a class -->
+<div class="item ng-class:type;">Stuff Goes Here</div>
+
+<!-- example with string syntax -->
+<!-- use the styleOne and styleTwo variables as classes -->
+<div class="item ng-class:[styleOne, styleTwo];">Stuff Goes Here</div>
+
+<!-- example with evaluated data -->
+<!-- add the text-error class if wrong is true -->
+<div class="item ng-class:{ 'text-error': wrong };">Stuff Goes Here</div>
+
+  
+  
+<!-- example with string syntax -->
+<!-- use the type variable as a class -->
+<div class="item" ng-class="type">Stuff Goes Here</div>
+
+<!-- example with string syntax -->
+<!-- use the styleOne and styleTwo variables as classes -->
+<div class="item" ng-class="[styleOne, styleTwo]">Stuff Goes Here</div>
+
+<!-- example with evaluated data -->
+<!-- add the text-error class if wrong is true -->
+<div class="item" ng-class="{ 'text-error': wrong }">Stuff Goes Here</div>

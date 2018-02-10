@@ -1,0 +1,117 @@
+DEBUGGING A FUNCTION:
+1. Open the script file in Sources tab.
+2. Write in the console:
+  'debug(name_of_func)' // so anytime passed function is called it starts debugging.
+  'undebug(name_of_func)' // Always run this when you are done debugging.
+
+INSPECTING DOM ELEMENTS USING JAVASCRIPT
+var btn = document.getElementById('myButton');
+'inspect(btn)';
+
+inspect(object/function) opens and selects the specified element or object in the appropriate panel: either the Elements panel for DOM elements or the Profiles panel for JavaScript heap objects. The following example opens the document.body in the Elements panel:
+inspect(document.body);
+
+GETTING ALL THE EVENTS ASSOCIATED WITH AN HTML ELEMENT:
+var btn = document.getElementById('myButton');
+getEventListeners(btn);
+Output: Object {scroll: Array[1], mousedown: Array[1]};
+
+Description: Returns the event listeners registered on the specified object. The return value is an object that contains an array for each registered event type e.g click or keydown. The members of each array are objects that describe the listener registered for each type.
+
+GET ALL EVENT LISTENERS ATTACHED USING JQUERY TO AN HTML ELEMENT:
+var el = document.getElementById('someId');
+jQuery._data(el, 'events');
+
+
+MONITORING WHEN A PARTICUAL FUNCTION IS BEING FIRED:
+'monitor(name_of_func)';
+'unmonitor(name_of_func)'
+
+When the function specified is called, a message is logged to the console that indicates the function name along with the arguments that are passed to the function when it was called.
+function sum(x, y) {
+    return x + y;
+}
+monitor(sum);
+
+MONITORING AN HTML ELEMENT WHEN ITS EVENT IS FIRED:
+monitorEvents(btn, "click");
+Description: The first parameter is the object to monitor, returns all events if second argument is not provided. To specify an event to listen to, pass either a string or an array of strings as the second argument.
+
+unmonitorEvents(btn, "click");
+
+DISPLAYING ALL THE PROPERTIES OF AN HTML ELEMENT IN THE CONSOLE
+var btn = document.getElementById('myButton');
+'console.dir(btn)';
+
+PRINTING IN TABLE TO THE CONSOLE
+Print an array as a table, one element per row. The optional parameter columns specifies which properties/array indices are shown in the columns. If that parameter is missing, all property keys are used as table columns. Missing properties and array elements show up as undefined in columns.
+var persons = [{id: 1, firstname: 'navneet', lastname: 'prakash'}, {id: 2, firstname: 'Chirag', lastname: 'Kausik'}];
+console.table(persons);
+console.table(persons, ['firstName']);
+console.table(persons, ['firstName', 'age']);
+
+STYLING YOUR CONSOLE MESSAGES
+var bigErrorStyle = 'color: red; font-size: 60px; font-weight: bold;
+font-family: helvetica, sans-serif; text-shadow: 1px 1px 2px black';
+
+console.log('%c your message', bigErrorStyle);
+
+GROUPING CONSOLE MESSAGES:
+The console.group(): is used to group together a series of log messages. Once this method is called, any further log messages will be added to the group until console.groupEnd() is executed to close the group.
+
+NESTING GROUPS: It is possible to nest multiple groups within one another.
+console.group('Group One');
+console.group('Group Two');
+...
+console.groupEnd(); // Close group two
+console.groupEnd(); // Close group one
+
+COLLAPSING GROUP MESSAGES: The console.groupCollapsed() method is essentially the same as console.group() except that the group is initially displayed collapsed rather than open in the console.
+
+console.groupCollapsed('Fetching Data');
+console.log('Request Send');
+console.error('Error: Server not responsing (500)');
+
+console.groupEnd();
+console.log('Continuing...');
+
+STARTING A NEW JAVASCRIPT CPU PROFILE:
+The console.profile() method will start a new JavaScript CPU profile if the developer tools are open. You have the option to specify a label for the profile if you wish.
+The console.profileEnd() method will complete the profile.
+
+function animationUI () {
+  console.profile('Animating');
+  // Animate something...
+  console.profileEnd();
+}
+
+MEASURING EXECUTION TIME:
+The console.time() and console.timeEnd() methods give you a way of timing how long it takes for a piece of code to execute. Both the time() and timeEnd() methods should be passed the same label parameter.
+EXAMPLE:
+console.time('Draw frame');
+// Execute some code...
+console.timeEnd('Draw frame');
+
+MAKE A NEW TIMELINE RECORDING IN THE CHROME DEVELOPER TOOLS:
+The console.timeline() and console.timelineEnd() methods does this. You have the option to specify a label for the new timeline. As with console.time(), this label must be the same in the calls to console.timeline() and console.timelineEnd().
+EXAMPLE:
+console.timeline('Google Search');
+// Do some work.
+console.timelineEnd('Google Search');
+
+PRINTING THE STACK TRACE AT A SPECIFIC MOMENT:
+The console.trace() method will print a stack trace for the point at which the method was called.
+
+
+
+LOG FUNCTION WHICH WILL ADD PREFIX (YOUR MESSAGE) TO EVERY MESSAGE YOU LOG USING CONSOLE.LOG:
+There are some best way we can achieve this:
+
+function appLog() {
+  var args = Array.prototype.slice.call(arguments);
+  args.unshift('your app name');
+  console.log.apply(console, args);
+}
+
+console.log(appLog("Some error message")); 
+//output of above console: 'your app name Some error message'

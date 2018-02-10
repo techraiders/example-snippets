@@ -1,0 +1,87 @@
+<input type="text" ng-model="handle">
+
+<script>
+  $scope.handle = '';
+    $scope.watch('handle', function(newValue, oldValue) {
+      console.info('Value was changed');
+      console.log('New value' + newValue, 'Old value' + oldValue);
+    });
+</script>
+
+<!-- 
+  <script>
+    $scope.handle= '';
+    $scope.watch('handle', function(newValue, oldValue){
+      console.info('Value was changed');
+      console.log('Old: ' + oldValue, 'New' + newValue);
+    });
+
+    setTimeout(function() {
+      $scope.$apply(function() {
+        $scope.handle='nayivalue';
+        console.log('Handle ki value change hui h');
+      });
+    })
+  </script>
+-->
+
+
+<script>
+  $scope.a = 1;
+  $scope.b = 2;
+  $scope.c = 3;
+  
+  // $scope.$watchGroup watches a collection of variables, and executes its handler function when value changes of any of those variables.
+  $scope.$watchGroup(['a', 'b'], function(newValue, oldValue) {
+    if(newValue != oldValue) {
+      $scope.c = $scope.b;
+    }
+  });
+  
+</script>
+
+<script>
+  $scope.emps = [
+    {empno: "1001", ename: "Jag"},
+    {empno: "1002", ename: "Chai"},
+    {empno: "1003", ename: "Win"},
+    {empno: "1004", ename: "Dhan"}
+  ];
+  
+  // watchCollection is used to watch arrays.
+  // Detects modifications to arrays (ex: adding or deleting elements)
+  // Does not detech modifications to array items(ex: modifying an object in an array.
+  $scope.$watchCollection('emps', function() {
+    // statements
+  });
+</script>
+
+<script>
+  $scope.o = {
+    a: 1,
+    b: 2,
+    c: 3
+  };
+  
+  $scope.$watch("o", function(newValue, oldValue) {
+    if(newValue != oldValue) {
+      // statements
+    }
+  }, true); // Passing true here activates deeper watch that also watches key, value in the object
+
+  $scope.$watchGroup(['o.a', 'o.b'], function(newValue, oldValue) {
+    if(newValue != oldValue) {
+      // statements
+    }
+  });
+  
+  
+  // Watching the return value of a function expression, which operates on a scope property:
+  
+  $scope.vm.force = 8;  
+  $scope.$watch(function () {
+    vm.force % 2 === 0;
+  }, function (newValue, oldValue) {
+    console.log('Value changed, newValue ' + newValue, 'Old value: ' + oldValue);
+  });
+</script>
