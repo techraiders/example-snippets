@@ -50,6 +50,21 @@ and the answer is -- because the changed structure is representing a different v
 
 So if you start thingking in terms of values, then such doubt should not bother you.
 
+
+VALUE ORIENTED PROGRAMMING IN JAVASCRIPT:
+VOP can be implemented in JavaScript. As said before JavaScript has not immutable structures, but immutability can be achieved by principles and rules:
+
+Freeze your objects: Object.freeze method give opportunity to block the object from further mutation.
+const frog = {color: 'green', sound: 'ribbit ribbit'};
+Object.freeze(frog);
+
+frog.color = 'red'; frog.sound = 'hau hau';
+console.log(frog); // {color: 'green', sound: 'ribbit ribbit'};
+
+In the above freeze example: I've tried to mutate frog attributes, but in the result object stays unchanged. Very important is the fact that Object.freeze block mutation only in the object fields, any nested object i.e object inside property of this object can be mutated.
+
+
+
 Some Good References to Immutability:
 https://medium.com/dailyjs/the-state-of-immutability-169d2cd11310
 */
