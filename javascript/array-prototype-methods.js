@@ -34,4 +34,24 @@ var points = [40, 100, 1, 5, 25, 10];
 var sorted = points.sort(function (a, b) {
   return a - b;
 });
-console.log(sorted) // [1, 5, 10, 25, 40, 100]
+console.log(sorted); // [1, 5, 10, 25, 40, 100]
+
+
+
+// CREATING OUR OWN ARRAY USING OBJECT
+/* Push method is intentionally generic, and we can use that to our advantage. Array.prototype.push can work on an object just fine, as below example shows. Note that we don't create an array to store a collection of objects. Instead, we store the collection of object on the object itself and use call on Array.prototype.push to trick the method into thinking we are dealing with an array, and it just works, thanks to the way JavaScript allows us to establish the execution context */
+
+var obj = {
+  length: 0,
+  addElem: function (elem) {
+   [].push.call(this, elem);
+  }
+};
+
+console.log(obj.length); // 0
+obj.addElem({});
+console.log(obj.length); // 1
+console.log(obj); // {0: {}, addElem: function () {}, length: 1};
+obj.addElem({});
+console.log(obj.length); // 2
+console.log(obj); // {0: {}, 1: {}, addElem: function () {}, length: 2};
