@@ -1,0 +1,9 @@
+/*
+CSS pointer-events property almost acts in a JavaScript like way effectly disabling an element when the value is none, but otherwise allowing the element to function per usual when the value isn't none, and pointer-events even prevent JavaScript event from firing!
+*/
+
+.disabled {pointer-events: none;}
+
+/*
+Click on that element and any addEventListener callback you've placed on the element will not fire.  A perfect property, really -- you don't need to do a className check before you decide whether or not to fire something based on class presence.
+*/
