@@ -29,3 +29,18 @@ function addCSSRule (sheet, selector, rules, index) {
 
 Use it!
   CSSRule(document.stylesheets[0], 'header', 'float: left');
+
+
+/* GET PSEUDO ELEMENT PROPERTIES WITH JAVASCRIPT:
+We know that we can get basic CSS style values for an element with the style property, but what about pseudo-element properties?  Yes, JavaScript can even access those too!
+*/
+
+// Get the color value of .element:before
+var color = window.getComputedStyle(
+  document.querySelector('.element'), ':before'
+).getPropertyValue('color');
+
+// Get the content value of .element:before
+var content = window.getComputedStyle(
+  document.querySelector('.element'), ':before'
+).getPropertyValye('content');
