@@ -1,0 +1,21 @@
+All that's required is a parent element with which we'd like to listen to node insertions within:
+
+<ul id="parentElement"></ul>
+
+/*
+In order to get a handle on node insertion detection, we need to set up a series of keyframe animation which will start when the node is inserted. The clip property is used since it has no effect on the node itself:
+*/
+
+@keyframes nodeInserted {
+  from {opacity: 0.99;}
+  to {opacity: 1;}
+}
+
+With the keyframes created, the animation needs to be applied on the elements you'd like to listen for. Note the tiny duration; that relaxes the animation footprint on the browser:
+
+#parentElement > li {
+  animation-name: nodeInserted;
+  animation-duration: 0.001s;
+}
+
+/* Add the animation to the child nodes you are listening for. When the animation ends, the insertion event will fire! */
