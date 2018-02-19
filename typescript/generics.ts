@@ -36,5 +36,6 @@ class KeyValuePairPrinter<T, U> {
   }
 }
 
-var printer = new KeyValuePairPrinter([pair1, pair3]);
+var printer = new KeyValuePairPrinter([pair1, pair3]); // works whereas below doesn't
+// var printer = new KeyValuePairPrinter([pair1, pair2, pair3]); // throws error because pair2 doesn't share the same generic parameter passed here.
 printer.print();
