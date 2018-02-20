@@ -1,3 +1,10 @@
+/*
+There are 3 key terms we need to define before we proceed:
+  1. Handler: The placeolder object which contains the trap(s).
+  2. Trap: The method that provide property access.
+  3. Target: The object the proxy virtualizes.
+*/
+
 console.clear();
 
 const wrap = obj => {
