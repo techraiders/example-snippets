@@ -82,3 +82,23 @@ var person = new Proxy({}, validator);
 
     person.age = 'young'; // Throws an exception - The age is not an integer.
     person.age = 300; // Throws an exception - The age is invalid.
+
+
+
+/*
+We can use Proxy.revocable in a similar way to Proxy. The main difference are that the return value will be {proxy, revoke}, and that once revoke is called the proxy will throw Error on any operation. Let's go back to our pass-through Proxy example and make it revocable. Note that we're not using the new operator here. Calling revoke over and over has no effect.
+*/
+
+var target = {}, handler = {};
+var {proxy, revoke} = Proxy.revocable(target, handler);
+proxy.a = 'b';
+console.log(proxy.a); // 'b'
+revoke();
+revoke();
+revoke();
+console.log(proxy.a); // TypeError: illegal operation attempted on a revoked proxy.
+/* This type of Proxy is particularty useful because you can now completely cut off access to the proxy granted to a customer. You start by passing of a revocable Proxy and keeping around the revoke method (hey, may be you can use a WeakMap for that), and when it is clear that the consumer shouldn't have access to target anymore, not even through proxy - you .revoke() the hell out of their access. Goodbye consumer!
+
+Furthermore, since revoke is available on the same scope where your handler traps live, you could set up extremely paranoid rules such as "if a consumer attempts to access a private property more than once, revoke their proxy entirely."
+
+*/
