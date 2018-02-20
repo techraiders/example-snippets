@@ -47,7 +47,14 @@ arr.push(5);
 console.log(arr);
 
 
-
+/* There are manu real-world applications for Proxies like:
+  1. Validation
+  2. Value correction.
+  3. Property lookup extension.
+  4. Tracing property accesses.
+  5. Revocable references.
+  6. Implementing the DOM in JavaScript.
+*/
 
 // USING PROXIES TO ENFORCE VALUE VALIDATION
 var validator = {
