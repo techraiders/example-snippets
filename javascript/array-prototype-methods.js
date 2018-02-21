@@ -55,3 +55,11 @@ console.log(obj); // {0: {}, addElem: function () {}, length: 1};
 obj.addElem({});
 console.log(obj.length); // 2
 console.log(obj); // {0: {}, 1: {}, addElem: function () {}, length: 2};
+
+
+/* DEBUGGING ARRAY PROTOTYPE NATIVE METHODS (Yet to be run and verified) */
+Array.prototype._originalPush = Array.prototype.push;
+Array.prototype.push = function (...args) {
+console.log(‘pushed’, this, args, new Error (‘nice stacktrace’));
+return this._originalPush(...args);
+}
