@@ -174,6 +174,11 @@ var baz = foo + '';
 typeOf baz; // "string"
 
 
+[] + {} // "[object Object]"
+{} + [] // 0
+({}+[]) // "[object Object]"
+
+
 
 "Any sufficiently advanced technology is indistinguishable from magic".
 Learn More, JavaScript Date Quirks:
