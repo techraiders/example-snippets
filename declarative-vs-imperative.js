@@ -1,5 +1,6 @@
-21172023988001
-3874
+//calgarylibrary.ca
+29065029066818
+09022017
 
 /************************** SIMPLYFYING SWITCH CASE *********************/
 var doSomething = function(doWhat) {
