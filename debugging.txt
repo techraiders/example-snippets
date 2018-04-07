@@ -1,3 +1,16 @@
+1. Drag and Drop in the Elements panel: In the Elements panel, you can drag and drop any HTML elements and change its position across the page.
+
+2. Reference the currently selected element in the console: Select a node in the ELements panel, and type $0 in the console to reference it. If you're using jQuery, you can enter $($0) to access the jQuery API on this element.
+
+3. Use the value of last operation in the console: Use $_ to reference the return value of previous operation executed in the Console.
+
+4. Screenshot a single element: Select an element and press cmd+shift+p or ctrl+shift+p in windows to open the 'Command Menu', and select 'Capture node screenshot'.
+
+
+
+
+
+
 DEBUGGING A FUNCTION:
 1. Open the script file in Sources tab.
 2. Write in the console:
