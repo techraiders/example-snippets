@@ -1,17 +1,18 @@
 console.clear();
 
 var Calc = function (start){
+  var that = this;
   this.add = function (value) {
     start += value;
-    return this;
+    return that;
   };
   this.multiply = function (value) {
     start *= value;
-    return this;
+    return that;
   };
   this.equals = function (callback) {
     callback(start);
-    return this;
+    return that;
   };
 };
 
