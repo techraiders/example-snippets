@@ -80,3 +80,20 @@ let throttledProcess = throttle(process, 1000);
 $(window).mousemove(throttledProcess);
 
 /* Explanation: Moving the mouse will generate a lot of mousemove events, but the call of the original function process() will just happen once per second. */
+
+
+/* DEBOUNCE(fn, wait): Creates a version of the function that, when invoked repeatedly, will call the original function after wait miliseconds since the last invocation. It's useful for running a function only after the event has stopped arriving. */
+
+function debounce (fn, interval) {
+  let timer;
+  return function debounced () {
+    clearTimeout(timer);
+    let args = arguments, that = this;
+    timer = setTimeout(function callOriginalFn() {
+      fn.apply(that, args);
+    }, interval);
+  };
+}
+
+let delayProcess = debounce(process, 400);
+$(window.resize(depayProcess));
