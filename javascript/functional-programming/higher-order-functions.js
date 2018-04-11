@@ -10,6 +10,7 @@ var doubler = multiplier(2),
 console.log(doubler(4)); // 8
 console.log(trippler(4)); // 12
 
+
 /*
   FUNCTION DECORATORS: A function decorator is a higher-order function that takes one fuction as an argument and returns another function,
   and returned function is a variation of the argument function.
@@ -28,8 +29,11 @@ function once(fn) {
       canRun = false;
     }
     return returnValue;
-  }
+  };
 }
+
+
+
 
 /*
 AFTER(count, fn): Creates a version of the function that executes only after a number of calls. It's useful, for example when we want to make sure the function runs only after all the asynchronous tasks have finished.
@@ -40,7 +44,7 @@ function after (count, fn) {
   return function runAfter() {
     ++runCount;
     if (runCount >= count) return fn.apply(this, arguments);
-  }
+  };
 }
 
 function logResult () {console.log('Calls have finished');}
@@ -57,3 +61,22 @@ setTimeout(function logSecondCall() {
 }, 4000); /* Now, I am using after() to build a new function logResultAfter2Calls() that will 
  execute the original code of logResult() only after the second call. */
 
+
+
+
+/* THROTTLE(fn, wait): Creates a version of the function that, when invoked repeatedly, will call the original function once per every wait milliseconds. It's useful for limiting events that occur faster. */
+
+function throttle(fn, interval) {
+  let lastTime;
+  return function throttled () {
+    let timeSinceLastExecution = Date.now() - lastTime;
+    if (!lastTime || (timeSinceLastExecution >= interval)) {
+      fn.apply(this, arguments);
+      lasTime = Date.now();
+    }
+  };
+}
+let throttledProcess = throttle(process, 1000);
+$(window).mousemove(throttledProcess);
+
+/* Explanation: Moving the mouse will generate a lot of mousemove events, but the call of the original function process() will just happen once per second. */
