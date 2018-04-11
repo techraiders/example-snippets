@@ -30,3 +30,30 @@ function once(fn) {
     return returnValue;
   }
 }
+
+/*
+AFTER(count, fn): Creates a version of the function that executes only after a number of calls. It's useful, for example when we want to make sure the function runs only after all the asynchronous tasks have finished.
+*/
+
+function after (count, fn) {
+  let runCount = 0;
+  return function runAfter() {
+    ++runCount;
+    if (runCount >= count) return fn.apply(this, arguments);
+  }
+}
+
+function logResult () {console.log('Calls have finished');}
+let logResultAfter2Calls = after(2, logResult);
+
+setTimeout(function logFirstCall () {
+  console.log('1st call has finished');
+  logResultAfter2Calls();
+}, 3000);
+
+setTimeout(function logSecondCall() {
+  console.log('2nd call has finished');
+  logResultAfter2Calls();
+}, 4000); /* Now, I am using after() to build a new function logResultAfter2Calls() that will 
+ execute the original code of logResult() only after the second call. */
+
