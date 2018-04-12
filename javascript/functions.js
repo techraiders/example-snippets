@@ -1,4 +1,29 @@
-<script>
+/* JAVASCRIPT FUNCTION OVERLOADING */
+(function () {
+  'use strict';
+  
+  function findAll () {
+    // Find all users...
+  }
+  
+  function findByFullName (name) {
+    // Find a user by name
+  }
+  
+  function findBySurname (first, last) {
+    // Find a user by first and last name
+  }
+  
+  Users.prototype.find = function find () {
+    if (arguments.length === 0) return findAll.apply(this);
+    if (arguments.length === 1 && typeof (arguments[0]) === 'string')
+      return findByFullName.apply(this, arguments);
+      
+    // by default, search using first and last name
+    return findBySurname.apply(this, arguments);
+  };
+}())
+
   /******* TRADITIONAL WAY ********/
   // Description: function can also be called before it's defined.
   doProcess(10, 20); // function call
@@ -66,20 +91,19 @@
  function showProduct(m, p) {
   alert("Product: " + (m*p).toString());
  }
-</script>
 
-<!-- calls doProess, passes arguments to a, b and function definition (name) of showDiff to doLater function-->
-<button value="show" onclick="doProcess(10,20, showDiff)"></button>
 
-<!-- We're writing name of the function we have to pass without () otherwise function will be called instead of passing its definition -->
+// calls doProess, passes arguments to a, b and function definition (name) of showDiff to doLater function 
+// <button value="show" onclick="doProcess(10,20, showDiff)"></button>
 
-<!-- calls doProess, passes arguments to a, b and function definition (name) of showProduct to doLater -->
-<button value="another show" onclick="doProcess(10,20, showProduct)"></button>
+// We're writing name of the function we have to pass without () otherwise function will be called instead of passing its definition 
 
-<!-- Passing function definition without creating before -->
-<button value="just another show" onclick="doProcess(10,20, function(p, q) {alert('diff: ' + (p-q));})"></button>
+// calls doProess, passes arguments to a, b and function definition (name) of showProduct to doLater
+// <button value="another show" onclick="doProcess(10,20, showProduct)"></button>
 
-<script>
+// Passing function definition without creating before 
+// <button value="just another show" onclick="doProcess(10,20, function(p, q) {alert('diff: ' + (p-q));})"></button>
+
   /*************** NESTING JAVASCRIPT FUNCTIONS ************/
   function doProcess(a, b) {
     function doLocalProcess1() {
@@ -165,6 +189,6 @@
     };
     btnDummy.value = "I am not dummy any more.";
   }
-</script>
-<button id="btnDummy" value="I'm dummy. click following button to make me functional"></button><br/>
-<button id=""btnDo value="attach event to above button" onclick="attachEvent()"></button>
+
+/* <button id="btnDummy" value="I'm dummy. click following button to make me functional"></button><br/>
+<button id=""btnDo value="attach event to above button" onclick="attachEvent()"></button> */
