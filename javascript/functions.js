@@ -1,4 +1,5 @@
-/* JAVASCRIPT FUNCTION OVERLOADING */
+/* JAVASCRIPT FUNCTION OVERLOADING : This is a simple example of function overloading in JavaScript using closure to overload a Users.find() method, we can overload the method with either a name or a first name, last name. */
+
 (function () {
   'use strict';
   
