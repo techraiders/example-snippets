@@ -1,0 +1,18 @@
+/* You can target data attributes by wrapping them in square brackets [] */
+
+[data-some-component] {
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+/* Getting a data attribute's value in CSS */
+<div data-content="some content goes here."></div>
+
+[data-content]:before {
+  content: attr(data-content);
+}
+
+/* You need to use the content property and want dynamic content, this is a cool way to do it.
+
+CAUTION:- A quick accessibility note: some screenreader/browser combos do not read text rendered with content, so critical content should always go in the markup.
+*/
