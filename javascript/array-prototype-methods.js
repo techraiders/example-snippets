@@ -28,6 +28,16 @@ ar.some(function(el) {
 // The callback accepts an argument that serves as a reference variable for the item in the array.
 // Example:
 var sandwiches = ['turkey', 'chicken salad', 'tuna', 'pd&j', 'egg salad'];
+var getTuna = sandwiches.find(function (sanswich) {
+  return sandwich === 'tuna';
+});
+console.log(getTuna); // 'tuna'
+
+var getHamburger = sandwiches.find(function (sandwich) {
+  return sandwich === 'hamburger';
+});
+console.log(getHamburger); // undefined
+
 
 
 // SORTING A NUMERIC ARRAY
