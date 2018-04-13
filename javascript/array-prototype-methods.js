@@ -24,6 +24,12 @@ ar.some(function(el) {
 // NOTE: Don't forget to return from the callback function, otherwise false will be automatically returned.
 
 
+// 3. FIND METHOD: The find method locates the first item in an array that matches a test you pass in as a callback function.
+// The callback accepts an argument that serves as a reference variable for the item in the array.
+// Example:
+var sandwiches = ['turkey', 'chicken salad', 'tuna', 'pd&j', 'egg salad'];
+
+
 // SORTING A NUMERIC ARRAY
 /* By default, the sort() function sorts values as strings.
 This works well for strings ("Apple" comes before "Banana").
