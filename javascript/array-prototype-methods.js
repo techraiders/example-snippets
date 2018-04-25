@@ -73,9 +73,79 @@ console.log(obj.length); // 2
 console.log(obj); // {0: {}, 1: {}, addElem: function () {}, length: 2};
 
 
+
+
 /* DEBUGGING ARRAY PROTOTYPE NATIVE METHODS (Yet to be run and verified) */
+
 Array.prototype._originalPush = Array.prototype.push;
 Array.prototype.push = function (...args) {
 console.log(‘pushed’, this, args, new Error (‘nice stacktrace’));
 return this._originalPush(...args);
 }
+
+
+/* Removing duplicates from an array */
+var data = [
+	{
+		name: 'Kyle',
+		occupation: 'Fashion Designer'
+	},
+	{
+		name: 'Liza',
+		occupation: 'Web Developer'
+	},
+	{
+		name: 'Emily',
+		occupation: 'Web Designer'
+	},
+	{
+		name: 'Melissa',
+		occupation: 'Fashion Designer'
+	},
+	{
+		name: 'Tom',
+		occupation: 'Web Developer'
+	}
+];
+
+// We can use Array.map() to get back a list of jobs from our data set.
+// One problem, though. Because several people have the same job, there are duplicates in our list.
+
+var jobs = data.map(function (item) {
+	return item.occupation;
+});
+
+// Logs ["Fashion Designer", "Web Developer", "Web Designer", "Fashion Designer", "Web Developer"]
+console.log(jobs);
+
+/* Let’s look at two ways to remove them:
+
+Using the Array.filter() method #
+The Array.filter() method creates a new array with only elements that pass a test you include as a callback function.
+
+We can use it to remove the duplicates. On each iteration, we’ll use Array.indexOf() to see if our item already exists. If the returned index is smaller than the current index, that means an instance of item already exists. Otherwise, we’ll return it to add it to the new array. */
+
+var jobsUnique = jobs.filter(function(item, index){
+	return jobs.indexOf(item) >= index;
+});
+
+// Logs ["Fashion Designer", "Web Developer", "Web Designer"]
+
+console.log(jobsUnique);
+var arrayUnique = function (arr) {
+	return arr.filter(function(item, index){
+		return arr.indexOf(item) >= index;
+	});
+};
+
+var jobsUnique = arrayUnique(jobs);
+
+/* Using some fancy new ES6 stuff #
+ES6 introduced a new object type, Set, that can be used to store data. When passing data into it, duplicates are removed.
+
+However, a set is not an array, so we also need to pass our new set through the Array.from() method to convert it into one. */
+
+var jobsUnique = Array.from(new Set(a));
+
+// Logs ["Fashion Designer", "Web Developer", "Web Designer"]
+console.log(jobsUnique);
