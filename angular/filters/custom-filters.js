@@ -15,3 +15,7 @@ angular.module('hospitalApp')
     $log.info($scope.name);
     $log.info($scope.changedname);
   })
+
+
+
+data-ng-repeat="tkt in vm.departmentWiseTickets | filter: {departmentName: vm.currentFilters.department} track by $index"
