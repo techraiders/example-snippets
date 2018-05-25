@@ -1,0 +1,23 @@
+<!-- CREATING NATIVE DIALOG OR MODAL -->
+
+<button type="button" class="btn open-modal">Open Modal</button>
+  <button type="button" class="btn close-modal">Close Modal</button>
+  
+  <dialog>
+    Native dialog box!
+  </dialog>
+  
+  <script>
+    var modal = document.querySelector('dialog');
+    var openBtn = document.querySelector('.open-modal');
+    var closeBtn = document.querySelector('.close-modal');
+
+    // showModal() makes modal visible (adds `open` attribute)
+  openBtn.addEventListener('click', function () {
+    modal.showModal();
+  });
+
+  // close() hides modal (removes `open` attribute)
+  closeBtn.addEventListener('click', function () {
+    modal.close();
+  });
