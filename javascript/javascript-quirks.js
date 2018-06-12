@@ -90,16 +90,16 @@ Date.now; // 1516790824192 i.e milliseconds
 // Usage of '~' operator: 2's complement.
 ~N -> -(N+1);
 var foo = 'foo';
-if (~foo.indexOf('f')) alert('Found it.') else alert('Didn't find.');
+if (~foo.indexOf('f')) alert('Found it.'); else alert('Didn't find.');
 // Negative one is a truthy value. '~' operator coerces in way so that we get expected behavior.
 
-
+/*
 String - Number = Number; '123' - 0 = 123
 Number - String = Number; 123 - '' = 123
 String + Number = String; '123' + 0 = '1230'
 String / Number = Number; '123' / 1 = 123
 String * Number = Number; '123' * 1 = 123
-Number<String> - Number<String> = Number; '123' - '0' = 123
+Number<String> - Number<String> = Number; '123' - '0' = 123 */
 
 var foo = 0;
 var baz = foo || 'foo';
