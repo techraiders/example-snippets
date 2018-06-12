@@ -1,4 +1,4 @@
-1. String.length returns number of bytes taken by the string, not number of characters.
+/* 1. String.length returns number of bytes taken by the string, not number of characters.
 
 2. 0.1 + 0.2 returns 0.3000000000004 javascript floating point operations overflows the rounding precision,
     we need to use the toPrecision function to guarantee that we get the correct.
@@ -14,8 +14,9 @@ catch (something) {console.log(something);}
 
 delete window.someProperty; // false
 
+*/
 
------------ Finding String Length -----------
+// ----------- Finding String Length -----------
 
  String.prototype.lengthInUtf8 = function() {
         var asciiLength = this.match(/[\u0000-\u007f]/g) ? this.match(/[\u0000-\u007f]/g).length : 0;
@@ -34,11 +35,11 @@ delete window.someProperty; // false
     
     
     '🐄'.length; // 2
- ----------- Finding String Length -----------
+// ----------- Finding String Length -----------
 
 var obj = {x: 1, x: 2}; // When using the same name for your properties, the second property will overwrite the first.
 
-In ECMAScript 5 strict mode code, duplicate property names were considered a SyntaxError.  With the introduction of computed property names making duplication possible at runtime, ECMAScript 2015 has removed this restriction.
+/* In ECMAScript 5 strict mode code, duplicate property names were considered a SyntaxError.  With the introduction of computed property names making duplication possible at runtime, ECMAScript 2015 has removed this restriction. */
 
 function haveES2015DuplicatePropertySemantics() {
   'use strict';
@@ -53,26 +54,24 @@ function haveES2015DuplicatePropertySemantics() {
   }
 }
 
-------------------------------------- COMPARING DATE OBJECTS ------------------------------------------------
-Comparing two Dates is tricky. We can’t compare them as is:
+// ------------------------------------- COMPARING DATE OBJECTS ------------------------------------------------
+// Comparing two Dates is tricky. We can’t compare them as is:
 
 var dt1 = new Date(“2012–03–26”),
     dt2 = new Date(“2012–03–26”),
     res = (dt1 == dt2);
-res will be always false (even it’s not a result of “===” operator, but “==”). To compare two dates we should compare their numeric values.
+// res will be always false (even it’s not a result of “===” operator, but “==”). To compare two dates we should compare their numeric // values.
 
-Reference: https://techblog.dorogin.com/javascript-date-quirks-12d449020539
+// Reference: https://techblog.dorogin.com/javascript-date-quirks-12d449020539
 
 
-Date Parsing illegal value as date via Date.parse or Date’s constructor will return Date object “Invalid Date”.
+// Date Parsing illegal value as date via Date.parse or Date’s constructor will return Date object “Invalid Date”.
 res = (new Date(“x”)).constructor == Date; // res is true
 res = new Date(“x”).valueOf(); // res is NaN i.e value of invalid date is NaN
 res = new Date(“x”).toString(); // res is “Invalid Date”
 
 ------------------------------------- COMPARING DATE OBJECTS ------------------------------------------------
 {} == {} // false i.e '==' or '===' compares reference of objects, rather than their values.
-
-
 
 var foo = '123';
 var baz = +foo;
@@ -88,7 +87,7 @@ To get the milliseconds, the preferable option is to call:
 Date.now; // 1516790824192 i.e milliseconds
 
 
-Usage of '~' operator: 2's complement.
+// Usage of '~' operator: 2's complement.
 ~N -> -(N+1);
 var foo = 'foo';
 if (~foo.indexOf('f')) alert('Found it.') else alert('Didn't find.');
@@ -119,7 +118,7 @@ foo = [];
 if (foo) alert(true); else alert(false); // Empty arrays are truthy.
 
 if (foo == false) {} // true
-Description: When we have an object like an array, The abstract equality, algorithm goes to toPrimitive algorithm. To primitive algorithms ends up with an array being a string. Now we have an empty string == false, still we can't compare these. So again it goes to toPrimitive algorithm, Empty string becomes a number 0, and false also becomes a number 0. Eventually, the condition becomes 0 == 0 and hence finally evaludate to true.
+//Description: When we have an object like an array, The abstract equality, algorithm goes to toPrimitive algorithm. To primitive algorithms ends up with an array being a string. Now we have an empty string == false, still we can't compare these. So again it goes to toPrimitive algorithm, Empty string becomes a number 0, and false also becomes a number 0. Eventually, the condition becomes 0 == 0 and hence finally evaludate to true.
 
 
 ------------------------------JAVASCRIPT IMPLICIT COERCION TABLE----------------------------
@@ -181,5 +180,5 @@ typeOf baz; // "string"
 
 
 "Any sufficiently advanced technology is indistinguishable from magic".
-Learn More, JavaScript Date Quirks:
-  1. https://hackernoon.com/a-quick-handbook-for-dates-in-javascript-7b71d0ef8e53
+// Learn More, JavaScript Date Quirks:
+//  1. https://hackernoon.com/a-quick-handbook-for-dates-in-javascript-7b71d0ef8e53
