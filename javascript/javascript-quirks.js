@@ -183,3 +183,28 @@ typeOf baz; // "string"
 "Any sufficiently advanced technology is indistinguishable from magic".
 // Learn More, JavaScript Date Quirks:
 //  1. https://hackernoon.com/a-quick-handbook-for-dates-in-javascript-7b71d0ef8e53
+
+
+
+/* STORY OF THE NEGATIVE ZERO */
+// Addition and Subtraction:
+3 - 3 // 0
+-3 + 3 // 0
+
+// Addition of zero values
+-0 + -0; // -0
+-0 - 0; // -0
+0 - 0; // 0
+0 + -0; // 0
+
+// Multiplication
+3 * 0 // 0
+3 * -0 // -0
+
+// Division
+3 / Infinity // 0
+-3 / Infinity // -0
+
+// Modulus
+6 % 2 // 0
+-6 % 2 // -0
