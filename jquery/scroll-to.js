@@ -18,3 +18,7 @@ $('#your-link').click(function (event) {
   event.preventDefault();
   $('#your-div').scrollView();
 });
+
+
+// Scroll your element into viewPort using native JavaScript
+document.getElementById('hourWiseLoadGraph').scrollIntoView();
