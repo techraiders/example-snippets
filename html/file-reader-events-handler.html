@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+    body 
+    {
+        font-size:18pt;
+    }
+</style>
+<title>Using the FileReader Events</title>
+<script type="text/javascript">
+    var thefile = null;
+    var reader = null;
+    var firstProgress = true;
+    
+    function init() {
+        var bHaveFileAPI = (window.File && window.FileReader);
+
+        if (!bHaveFileAPI) {
+            alert("This browser doesn't support the File API");
+            return;
+        }
+
+        document.getElementById("fileElem").addEventListener("change", onFileChanged);
+        document.getElementById("startread").addEventListener("click", startread);
+        document.getElementById("abortread").addEventListener("click", abortread);
+    }
+
+    function onFileChanged(theEvt) {
+        thefile = theEvt.target.files[0];
+
+        // display the file data 
+        document.getElementById("filename").innerHTML = thefile.name;
+    }
+
+    function startread(theEvt) {
+        if (thefile != null) {
+            reader = new FileReader();
+
+            reader.onloadstart = fileLoadStart;
+            reader.onloadend = fileLoadEnd;
+            reader.onload = fileLoad;
+            reader.onerror = fileError;
+            reader.onprogress = fileProgress;
+            reader.onabort = fileAbort;
+
+            reader.readAsBinaryString(thefile);
+        }
+        else {
+            alert("No file selected to read");
+        }
+    }
+
+    function abortread(theEvt) {
+    	if (reader)
+    		reader.abort();
+    }
+
+
+    function fileLoadStart(evt) {
+        document.querySelector("#readprogress").innerHTML += "<p>File reading started (onloadstart)</p>";
+    }
+    function fileLoadEnd(evt) {
+        document.querySelector("#readprogress").innerHTML += "<p>File reading has ended (onloadend)</p>";
+    }
+    function fileLoad(evt) {
+        document.querySelector("#progCounter").innerHTML = "<p>File read progress: 100%</p>";
+        document.querySelector("#readprogress").innerHTML += "<p>File reading completed (onload)</p>";
+    }
+    function fileProgress(evt) {
+        // evt will be a ProgressEvent: http://www.w3.org/TR/progress-events/#progressevent
+        if (evt.lengthComputable) {
+        	if (firstProgress) {
+	            firstProgress=false;        		
+	            document.querySelector("#readprogress").innerHTML += "<p id='progCounter'></p>";
+        	}
+            var progCalc = Math.round((evt.loaded / evt.total) * 100);
+            document.querySelector("#progCounter").innerHTML = "File read progress: " + progCalc + "%";
+        }
+    }
+    function fileError(evt) {
+        document.querySelector("#readprogress").innerHTML += "<p>A file read error has occurred:</p>";
+        switch (evt.target.error.code) {
+            case evt.target.error.NOT_FOUND_ERR:
+                document.querySelector("#readprogress").innerHTML += "<p>File was not found</p>";
+                break;
+            case evt.target.error.NOT_READABLE_ERR:
+                document.querySelector("#readprogress").innerHTML += "<p>File was unreadable</p>";
+                break;
+        }
+    }
+    function fileAbort(evt) {
+        document.querySelector("#readprogress").innerHTML += "<p>File reading has been aborted</p>";
+    }
+
+    window.addEventListener("load", init);
+</script>
+</head>
+<body>
+<h1>Using the FileReader Events</h1>
+<form action="">
+<label>Select a file: </label>
+<input type="file" name="files" id="fileElem" />
+</form>
+<p>File Name: <span id="filename"></span></p>
+<p>Read the file content:</p>
+<button id="startread">Start Reading</button>
+<button id="abortread">Cancel Reading</button>
+<p>Read progress:</p>
+<div id="readprogress"></div>
+</body>
+</html>
