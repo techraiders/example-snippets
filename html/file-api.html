@@ -39,10 +39,19 @@ interface
    result: contains the contents of the file that have been read so far. We can read entire content, or a portion or chunk.
    error: any error code associated with the read operation.
    
+   Reading Methods:
    readAsText(): reads the file as a text file.
    readAsDataURL(): returns the file data as an encoded data://URL typecally used for images
    readAdArrayBuffer(): reads the data as a buffer of bytes.
    readAsBinaryString(): reads the data as a string of binary data
+   
+   File Reader EVent Handlers:
+   onload: Fires when FileReader has finished successfully reading the data.
+   onloadstart: Fires when data reading is about to begin.
+   onloadend: FileReader has finished reading with or without an error.
+   onprogress: Called periodically during the read operation.
+   onerror: An error has occurred during the read process.
+   onabort: The process of reading the data was interrupted.
    
   5. FileError: Contains any error information about the read process. FileError interface is used for asynchronous reading.
   
