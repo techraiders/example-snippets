@@ -1,0 +1,57 @@
+<!-- Reads image file and generate thumbnail -->
+
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+    body 
+    {
+        font-size:18pt;
+    }
+</style>
+<title>Reading a File as a Data URL</title>
+<script type="text/javascript">
+    function init() {
+        var bHaveFileAPI = (window.File && window.FileReader);
+
+        if (!bHaveFileAPI) {
+            alert("This browser doesn't support the File API");
+            return;
+        }
+
+        document.getElementById("fileElem").addEventListener("change", onFileChanged);
+    }
+
+    function onFileChanged(theEvt) {
+        var thefile = theEvt.target.files[0];
+
+        // check to see if it is an image
+        if (!thefile.type.match('image.*')) {
+            return;
+        }
+        var reader = new FileReader();
+
+        reader.onload = function (evt) {
+             var resultdata = evt.target.result;
+
+            var img = new Image();
+            img.src = event.target.result;
+            document.getElementById('filecontents').appendChild(img);
+        };
+
+        reader.readAsDataURL(thefile);
+    }
+
+    window.addEventListener("load", init);
+</script>
+</head>
+<body>
+<h1>Reading File Content as a Data URL</h1>
+<form action="">
+<label>Select a file: </label>
+<input type="file" name="files" id="fileElem" />
+</form>
+<p>File contents: </p>
+<div id="filecontents"></div>
+</body>
+</html>
