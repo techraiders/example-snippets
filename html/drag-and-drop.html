@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+    body 
+    {
+        font-size:18pt;
+    }
+    #filedrop 
+    {
+        width: 300px;
+        height: 200px;
+        color: Gray;
+        border: 10px dashed #9a9a9a;
+    }
+</style>
+<title>Using Drag and Drop</title>
+<script type="text/javascript">
+    function init() {
+        var bHaveFileAPI = (window.File && window.FileReader);
+
+        if (!bHaveFileAPI) {
+            alert("This browser doesn't support the File API");
+            return;
+        }
+
+         document.getElementById("filedrop").addEventListener("drop", onFilesDropped);
+        document.getElementById("filedrop").addEventListener("dragover", onDragOver);
+
+    }
+
+    function onDragOver(theEvt) {
+        theEvt.stopPropagation();
+        theEvt.preventDefault();
+    }
+
+    function onFilesDropped(theEvt) {
+        // Calls these 2 functions to  make sure browser doesn't try to open the file.
+        theEvt.stopPropagation();
+        theEvt.preventDefault();
+
+        // rather than using event's target property, we use dataTransfer property
+        var files = theEvt.dataTransfer.files;
+        var totalBytes = 0;
+
+        document.getElementById('filedata').innerHTML = "";
+
+        for (var i = 0; i < files.length; i++) {
+            var fileInfo = "<p>File name: " + files[i].name + "; size: " + files[i].size + "; type: " + files[i].type + "</p>";
+            totalBytes += files[i].size;
+            document.getElementById('filedata').innerHTML += fileInfo;
+        }
+        document.getElementById('filedata').innerHTML += "<p>Total of " + files.length + " files, " + totalBytes + " bytes.";
+    }
+    
+    window.addEventListener("load", init);
+</script>
+</head>
+<body>
+<h1>Using Drag and Drop</h1>
+<p>Drop files here: </p>
+<div id="filedrop"></div>
+<p>File Information: </p>
+<div id="filedata"></div>
+</body>
+</html> 
