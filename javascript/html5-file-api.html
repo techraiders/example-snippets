@@ -1,3 +1,10 @@
+<form action="">
+ <label>Select a file: </label>
+ <input type="file" name="files" id="fileElem" />
+</form>
+
+<script>
+
 /*
 What you can do with the File API:
   1. Perform client-side file operations, such as limiting the size of uploads.
@@ -46,3 +53,22 @@ interface
   NOT_READABLE_ERR (4) : Browser determined a security issue.
   ENCODING_ERR (5) : The read was aborted by the user or system.
 */
+
+ window.addEventListener("load", init);
+
+    function init() {
+        var bHaveFileAPI = (window.File && window.FileReader);
+
+        if (!bHaveFileAPI) {
+            alert("This browser doesn't support the File API");
+            return;
+        }
+
+        document.getElementById("fileElem").addEventListener("change", onFileChanged);
+    }
+
+    function onFileChanged(evt) {
+        alert("You selected a file: " + evt.target.files[0].name);
+    }
+
+</script>
