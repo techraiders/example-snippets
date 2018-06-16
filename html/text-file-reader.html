@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+    body 
+    {
+        font-size:18pt;
+    }
+</style>
+<title>Reading a Text File</title>
+<script type="text/javascript">
+    function init() {
+        var bHaveFileAPI = (window.File && window.FileReader);
+
+        if (!bHaveFileAPI) {
+            alert("This browser doesn't support the File API");
+            return;
+        }
+
+        document.getElementById("fileElem").addEventListener("change", onFileChanged);
+    }
+
+    function onFileChanged(theEvt) {
+        var thefile = theEvt.target.files[0];
+        var totalBytes = 0;
+
+        // check to see if it is text
+        if (thefile.type != "text/plain") {
+            document.getElementById('filecontents').innerHTML = "No text file chosen";
+            return;
+        }
+
+        var reader = new FileReader();
+        reader.onload = function (evt) {
+            var resultText = evt.target.result;
+            document.getElementById('filecontents').innerHTML = resultText;
+        };
+        reader.readAsText(thefile);
+    }
+
+    window.addEventListener("load", init);
+</script>
+</head>
+<body>
+<h1>Reading File Data as Text</h1>
+<form action="">
+<label>Select a file: </label>
+<input type="file" name="files" id="fileElem" />
+</form>
+<p>File contents: </p>
+<textarea cols="80" rows="10" id="filecontents"></textarea>
+</body>
+</html>
