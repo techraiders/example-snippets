@@ -16,4 +16,4 @@ var date1 = new Date(2014,1,1);
 new Date().withoutTime() > date1.withoutTime(); // true
 
 
-Reference: https://stackoverflow.com/questions/2698725/comparing-date-part-only-without-comparing-time-in-javascript
+// Reference: https://stackoverflow.com/questions/2698725/comparing-date-part-only-without-comparing-time-in-javascript
