@@ -2,3 +2,5 @@ References:
   1. https://tenso.rs/
   2. https://github.com/transcranial/keras-js
   3. https://js.tensorflow.org/
+  4. https://github.com/node-tensorflow/node-tensorflow
+  5. https://github.com/soumith/torch.js
