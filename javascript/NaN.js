@@ -8,7 +8,7 @@ a concrete idea of this issue:
 
 
 Example: 
-Number.isNaN(0/0); // true; because 0/0 is NaN
+window.isNaN(0/0); // true; because 0/0 is NaN
 window.isNaN(2); // false
 window.isNaN(NaN); // true
 window.isNaN('somestring that can't be converted to number'); // true because couldn't coerce to a number
