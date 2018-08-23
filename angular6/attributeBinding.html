@@ -1,0 +1,10 @@
+<h2 [textContent]="title"> </h2>
+
+<table>
+  <tbody>
+    <tr>
+      <td [attr.colspan]="2"> </td> <!-- right way to bind attribute that exists as html element attribute but does not exist as DOM Object property -->
+      <td [colspan]="2"> </td> <!-- Throws error -->
+    </tr>
+  </tbody>
+</table>
