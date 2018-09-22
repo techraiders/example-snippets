@@ -1,0 +1,19 @@
+<a class="click-me" href="https://scotch.io/">Click Me</a>
+<a  href="https://scotch.io/">Click Me</a>
+
+
+document.documentElement.addEventListener('click', function (event) {
+
+	// Ignore clicks that aren't on links with the .click-me class
+	if (!event.target.matches('.click-me')) return;
+  
+  // Ignore command/control + click
+	if (event.metaKey || event.ctrlKey) return;
+
+	// Prevent the default link behavior
+	event.preventDefault();
+
+	// Do something scripty...
+  alert('Clicked!')
+
+}, false);
