@@ -11,5 +11,9 @@
 
 
 <button class="btn btn-primary" [class.active]="isActive"> </button>
+<div [class.className]="truthyOrFalsyValue"> </div>
+<div [ngClass]="'active accepted-answer'"> </div>
+<div [ngClass]="['className1', 'className2']"> </div>
+<div [ngClass]="{'active' : isActive, 'accepted-answer': accepted}"> </div>
 
 <button [style.backgroundColor]="isActive ? 'blue' : 'white'"> </button>
