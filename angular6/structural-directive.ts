@@ -8,8 +8,7 @@
     @Input() set appUnless (condition : boolean) {
       if (condition) {
         this.vcRef.clear();
-      }
-      else {
+      } else {
         this.vcRef.createEmbeddedView(this.templateRef);
       }
     }
