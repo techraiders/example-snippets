@@ -1,0 +1,37 @@
+<div #div1> </div>
+<input #input1/>
+<input #input2/>
+
+<script>
+  import { ElementRef } from 'angular/core';
+
+  // Give No Spaces between input1 and input2
+  @ViewChildren('input1,input2') inputs : QueryList<ElementRef>;
+  @ViewChild('div1') thisDiv : ElementRef;
+  
+  ngAfterViewInit () {
+    this.inputs.changes.subscribe(elements => {
+      elements.last.nativeElement.focus();
+    });
+  }
+</script>
+
+
+
+
+<!-- USING WITH CHILD COMPONENTS -->
+<child></child>
+<child></child>
+
+<script>
+  
+  @ViewChildren(child) children : QueryList<Child>;
+  @ViewChild(child) firstChild : Child;
+
+  ngAfterViewInit () {
+    // children and firstChild are not available
+  }
+  func1 () {
+    this.firstChild.somePublicAPI();
+  }
+</script>
