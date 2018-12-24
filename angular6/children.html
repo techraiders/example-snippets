@@ -35,3 +35,23 @@
     this.firstChild.somePublicAPI();
   }
 </script>
+
+
+
+
+<tabset>
+  <tab heading="Tab #1">Some content </tab>
+  <tab heading="Tab #2">... lots of content </tab>
+</tabset>
+
+<script>
+  @ContentChildren(Tab) tabs : QueryList<Tab>;
+  ngAfterContentInit () {
+    // this.tabs in now defined.
+  }
+  deactivateAllTabs () {
+    this.tabs.toArray().forEach(
+      tab => tab.deactivate();
+    );
+  }
+</script>
