@@ -5,7 +5,7 @@ export class AppComponent implements OnInit {
   @ViewChild('f') signupForm : NgForm;
   
   ngOnInit () {
-    /*
+    /* Sets the values of whole form
       this.signupForm.setValue({
         userData: {
           username: 'suggestedname'
@@ -16,6 +16,7 @@ export class AppComponent implements OnInit {
       });
     */
   
+    // Overrides part of the form
     this.signupForm.form.patchValue({
       userData: {
         username: 'suggestedName'
