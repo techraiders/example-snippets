@@ -24,4 +24,8 @@ export class AppComponent implements OnInit {
     });
   }
   
+  resetForm () {
+    this.signupForm.reset();
+  }
+  
 }
