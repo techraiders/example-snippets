@@ -1,0 +1,21 @@
+<form>
+  <div *ngFor="let d of data; index as i">
+    {{ d.currency }}
+    <input
+      type="number"
+      [value]="d.percent"
+      (input)="onInput(i, +percent.value)"
+      #percent
+    />
+  </div>
+</form>
+
+<script>
+
+  data = [{ currency: "USD", percent: 7 }, { currency: "fcc", percent: 6 }];
+
+
+  onInput(i, v) {
+    if (!isNaN(Number(v))) this.data[i].percent = v;
+  }
+</script>
