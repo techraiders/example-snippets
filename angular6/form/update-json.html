@@ -19,3 +19,29 @@
     if (!isNaN(Number(v))) this.data[i].percent = v;
   }
 </script>
+
+
+
+/**********************************************
+<div *ngFor="let d of data; index as i">
+          {{ d.currency }}
+          <input
+            type="number"
+            [ngModel]="d.percent"
+            [ngModelOptions]="{ standalone: true }"
+            (ngModelChange)="onPercentChange($event, i)"
+          />
+        </div>
+
+<script>
+    data = [{ currency: "USD", percent: 7 }, { currency: "FCC", percent: 6 }];
+  onPercentChange(e, i) {
+    console.log(e);
+
+    this.data[i].percent = e;
+  }
+
+  
+</script>
+
+/**********************************************
