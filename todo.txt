@@ -1,0 +1,8 @@
+To Learn:
+
+Docker Container.
+Permissions Management in Angular.
+NgRx in depth.
+Ivy Rendering Enginer at Angular in Depth.
+Deploy Express Server on AWS.
+Test Driven Development on AWS with Local Stack.
