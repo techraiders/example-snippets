@@ -18,3 +18,14 @@ This snippet can be used to alphabetically sort the characters in a string.
 
 const sortCharactersInString = str => [...str].sort((a, b) => a.localeCompare(b)).join('');
 sortCharactersInString('cabbage'); // 'aabbceg'
+
+// CAPITALIZE EACH WORD:
+const capitalizeEveryWord = str => str.replace(/\b[a-z]/g, char => char.toUpperCase());
+capitalizeEveryWord('hello world!'); // 'Hello World!'
+
+// DECAPITALIZE
+const decapitalize = ([first, ...rest]) =>
+first.toLowerCase() + rest.join('')
+
+decapitalize('FooBar'); // 'fooBar'
+decapitalize('FooBar'); // 'fooBar'
