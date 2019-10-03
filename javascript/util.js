@@ -45,5 +45,9 @@ const difference = (a, b) => {
   const s = new Set(b);
   return a.filter(x => !s.has(x));
 };
-
 difference([1, 2, 3], [1, 2, 4]); // [3]
+
+// isBrowserTabFocused
+// This snippet can be used to determine whether the browser tab is focused.
+const isBrowserTabFocused = () => !document.hidden;
+isBrowserTabFocused(); // true
