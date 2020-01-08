@@ -33,9 +33,19 @@
       NAND = Bubbled OR
       
     ii. !(A+B) = (!A).(!B)
-        NOR = Bubbled AND
-        
+        NOR = Bubbled AND        
         
  Reference:
     1. https://www.tutorialspoint.com/computer_logical_organization/boolean_algebra.htm
     2. http://www.electronics-tutorials.ws/boolean/bool_6.html
+    
+    
+    
+Finding Condition:
+Expression1 Expression2 ExpectedValue
+T           T           T
+T           F           F
+F           T           F
+F           F           T
+
+Required Condition: AB + !A!B
