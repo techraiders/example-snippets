@@ -1,0 +1,66 @@
+<ng-container matColumnDef="logonName">
+  <mat-header-cell *matHeaderCellDef mat-sort-header>
+    Logon Name
+  </mat-header-cell>
+
+  <mat-cell *matCellDef="let element">
+    <span class="card-view-label">Logon Name<span>:</span></span>
+
+    {{ element.logonName }}
+  </mat-cell>
+</ng-container>
+
+
+
+<style>
+  /* START: Responsive material table css to make it card */
+  .card-view-label {
+    display: none;
+  }
+
+  @media (max-width: 1020px) {
+    .mat-header-row {
+      display: none;
+    }
+
+    .mat-row {
+      flex-direction: column;
+      align-items: start;
+      min-height: unset !important;
+      max-height: unset !important;
+      border: 1px solid rgba(0, 0, 0, 0.125);
+      border-radius: 0.25rem;
+      padding: 15px;
+      box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+      margin-bottom: 20px;
+    }
+
+    .card-view-label {
+      display: inline-block !important;
+      font-weight: normal !important;
+      width: 175px !important;
+      color: #999 !important;
+      font-size: 14.4px !important;
+    }
+
+    .mat-cell:first-of-type {
+      padding-left: unset !important;
+    }
+
+    .mat-cell {
+      display: flex;
+      align-items: center;
+      font-weight: bold !important;
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+
+    .card-view-label span {
+      padding-left: 40%;
+      font-weight: bold !important;
+      margin-right: 10px !important;
+      float: right !important;
+    }
+}
+/* END: Responsive material table css to make it card */
+</style>
