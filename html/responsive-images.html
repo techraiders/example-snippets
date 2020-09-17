@@ -1,0 +1,12 @@
+<!--
+  when max-width: 400px, uses image which is 400px wide
+  when max-width: 800px, uses image which is 800px wide
+  for other cases, uses third image which is 1600px wide
+-->
+
+<img src="./path/to/default-image.extension" alt="alternate text"
+  srcset="images/filename-400.jpg 400w,
+          images/filename-800.jpg 800w,
+          images/filename-1600.jpg 1600w"
+          sizes="(max-width: 400px) 400px, (max-width: 800px) 800px, 100vw"
+/>
