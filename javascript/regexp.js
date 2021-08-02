@@ -42,3 +42,6 @@ Parentheses also let you define several strings that may match, using the pipe (
             // "nana", "ba", "na", and others.
 
 
+
+Page Range Validation Regex: ^[0-9]+(?:(?:\s*,\s*|-)[0-9]+)*$
+
