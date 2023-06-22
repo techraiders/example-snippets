@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open Sans"
+      rel="stylesheet"
+    />
+    <style>
+      .main-container {
+        margin-left: 100px;
+      }
+      .slider-container {
+        position: relative;
+        margin: 15px;
+        margin-right: 55px;
+        height: 83px;
+        width: 578px;
+        display: inline-block;
+      }
+
+      label.slider-label {
+        position: absolute;
+        top: -18%;
+        font-family: "Open Sans", "Times New Roman";
+        font-weight: 400;
+        font-size: 8px;
+        line-height: 16px;
+        letter-spacing: 0.4px;
+        color: rgba(0, 0, 0, 0.87);
+      }
+
+      .tooltip {
+        width: 48px;
+        height: 31px;
+        position: absolute;
+        top: -57px;
+        left: 0.7%;
+        transform: translateX(-50%);
+        display: block;
+        background-color: #004b8d;
+        padding: 5px 10px;
+        border-radius: 2px;
+        font-size: 14px;
+      }
+
+      .tooltip > .tooltip-text {
+        font-family: "Open Sans", "Times New Roman";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 16px;
+        color: #ffffff;
+        margin-top: 15%;
+        margin-left: 8%;
+        letter-spacing: 0.4px;
+      }
+
+      .tooltip:before {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 42%;
+        margin-left: -5px;
+        border-width: 10px 10px 0 10px;
+        border-style: solid;
+        border-color: #004b8d transparent transparent transparent;
+      }
+
+      .steps-labels {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10px;
+        flex: 1;
+        text-align: center;
+        font-size: 8px;
+        font-weight: 400;
+        font-style: normal;
+        font-family: "Open Sans", "Times New Roman";
+        line-height: 16px;
+        letter-spacing: 0.4px;
+        color: rgba(0, 0, 0, 0.87);
+      }
+
+      .steps-labels > span {
+        width: 25px;
+      }
+
+      .steps-labels > span::before {
+        content: "";
+        position: absolute;
+        bottom: 82.5%;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: #598ab5;
+        transition: background-color 1s;
+        transform: translateX(7px);
+      }
+
+      .steps-labels > span:first-of-type::before,
+      .steps-labels > span:last-of-type::before {
+        visibility: hidden;
+      }
+
+      input[type="range"] {
+        -webkit-appearance: none;
+        width: 100%;
+        height: 6px;
+        background-color: rgba(17, 17, 138, 0.15);
+        outline: none;
+        border-radius: 10px;
+        margin: 0;
+        padding: 0;
+      }
+
+      input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 15.71px;
+        height: 15.71px;
+        border-radius: 50%;
+        background: #114bba;
+        cursor: pointer;
+      }
+
+      input[type="range"]::-moz-range-thumb {
+        width: 15.71px;
+        height: 15.71px;
+        border-radius: 50%;
+        background: #114bba;
+        cursor: pointer;
+      }
+
+      input[type="range"]::-ms-thumb {
+        width: 15.71px;
+        height: 15.71px;
+        border-radius: 50%;
+        background: #114bba;
+        cursor: pointer;
+      }
+
+      .slider-container .saved-points {
+        position: absolute;
+        top: -12%;
+      }
+      .slider-container .saved-points li {
+        position: absolute;
+        list-style: none;
+        width: 10px;
+        height: 10px;
+        background-color: #4caf50;
+        border-radius: 50%;
+      }
+
+      .data-points {
+        display: inline-block;
+        background-color: #FFFFFF;
+        border-radius: 4px;
+        border: 1px solid rgba(0, 0, 0, 0.12);
+        width: 282px;
+        height: 64px;
+      }
+      .data-points > ul {
+        margin: 0;
+        padding: 15px;
+        padding-left: 25px;
+        
+      }
+      .data-points > ul > li {
+        font-family: "Open Sans", "Times New Roman";
+        font-size: 12px;
+        line-height: 16px;
+        font-style: normal;
+        letter-spacing: 0.4px;
+        color: rgba(0, 0, 0, 0.87);
+        display: flex;
+        justify-content: space-between;
+        position: relative;
+      }
+      .data-points > ul > li::before {
+        content: '';
+        width: 10px;
+        height: 10px;
+        left: -6%;
+        top: 31%;
+        border-radius: 50%;
+        position: absolute;
+      }
+      .data-points > ul > li:nth-child(even)::before {
+        background-color: red;
+      }
+      .data-points > ul > li:nth-child(odd)::before {
+        background-color: green;
+      }      
+    </style>
+
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- The commented code will come in handy for testing while integrating this slider into feature. We can remove this temporary code after final integration -->
+    <!-- <fieldset style="padding: 20px">
+      <legend>Temporary fields for testing purpose:</legend>
+      Custom Value:
+      <input
+        type="number"
+        class="custom-range-input"
+        oninput="onCustomInput(this)"
+        placeholder="Enter income needed"
+        onfocus="onCustomInputFocus()"
+        onblur="onCustomInputBlur(this)"
+      />
+    </fieldset> -->
+
+    <br /><br /><br /><br /><br /> 
+
+    <div class="main-container">
+      <div class="income slider-container">
+        <label for="range-control" class="slider-label">In rands</label>
+        <input
+          type="range"
+          id="range-control"
+          class="range-control"
+          min="0"
+          max="100000"
+          step="10000"
+          value="0"
+        />
+        <div id="tooltip" class="tooltip"><div class="tooltip-text"></div></div>
+        <div id="steps-labels" class="steps-labels"></div>
+        <ul class="saved-points"></ul>
+      </div>
+  
+      <div class="data-points">
+        <ul>
+          <li><span>Income</span> <span>R80 000</span></li>
+          <li><span>Expense</span> <span>R78 000</span> </li>
+        </ul>
+      </div>
+    </div>
+    <script>
+      /*********** GLOBAL VARIABLE DECLARATIONS ***********/
+      const rangeSlider = document.querySelector(".range-control");
+      const tooltip = document.querySelector(".tooltip");
+      const tooltipText = document.querySelector(".tooltip > .tooltip-text");
+      const customRangeInput = document.querySelector(".custom-range-input");
+
+      const stepsLabels = document.querySelector(".steps-labels");
+      const savedPoints = [
+        { value: 78000, backgroundColor: "red" },
+        { value: 80000, backgroundColor: "green" },
+      ]; // Values where color bullets will be placed
+
+      // Generate slider labels based on step value
+      const step = Number(rangeSlider.getAttribute("step"));
+      const max = Number(rangeSlider.getAttribute("max"));
+
+      /*********** END OF GLOBAL VARIABLE DECLARATIONS ***********/
+
+      /***************** METHODS DEFINITION ******************/
+      function generateLabels() {
+        for (let i = 0; i <= max; i += step) {
+          const label = document.createElement("span");
+          label.textContent = i;
+          stepsLabels.appendChild(label);
+        }
+      }
+
+      function addColorBulletsOnSliderTrack(savedPoints) {
+        const slider = document.querySelector(".range-control");
+        const trackWidth = slider.offsetWidth - 10;
+        const bulletsContainer = document.querySelector(".saved-points");
+        bulletsContainer.innerHTML = "";
+
+        savedPoints.forEach((point) => {
+          const bullet = document.createElement("li");
+          const position = (point.value / Number(slider.max)) * trackWidth;
+          bullet.style.left = `${position}px`;
+          bullet.style.backgroundColor = point.backgroundColor;
+          bulletsContainer.appendChild(bullet);
+        });
+      }
+      /* When input is given from sliding the thumb */
+      function onRangeSliderThumbDrag() {
+        updateTooltip(formatToolipForIncomeNeeded);
+        if (customRangeInput) {
+          customRangeInput.value = this.value;
+        }
+
+        const thumbWidth = 15.71; // Adjust this value to match the thumb width in CSS
+        const thumbPosition =
+          (this.value / (this.max - this.min)) *
+          (this.offsetWidth - thumbWidth);
+        tooltip.style.left = `${this.offsetLeft + 10 + thumbPosition}px`;
+        var value = ((this.value - this.min) / (this.max - this.min)) * 100;
+
+        this.style.background = "rgba(17, 17, 138, 0.15)";
+
+        this.style.background =
+          "linear-gradient(to right, #004B8D 0%, #004B8D " +
+          value +
+          "%, #114b8a26 " +
+          value +
+          "%, #114b8a26 100%)";
+      }
+      /* When user enters custom value*/
+      function onCustomInput(event) {
+        if (event.value) {
+          rangeSlider.value = event.value;
+        } else {
+          rangeSlider.value = "0";
+        }
+        onRangeSliderThumbDrag.bind(rangeSlider)();
+      }
+
+      function updateTooltip(callback) {
+        if (typeof callback === "function") {
+          callback();
+        }
+      }
+
+      function onCustomInputFocus() {
+        rangeSlider.removeAttribute("step");
+      }
+
+      function onCustomInputBlur(event) {
+        if (isWholeNumber(event.value / step)) {
+          // if the current input is a valid value of a step, enable steps.
+          rangeSlider.setAttribute("step", step);
+        }
+      }
+
+      function isWholeNumber(value) {
+        value = Number(value);
+        return Number.isInteger(value) && Number.isFinite(value);
+      }
+
+      function formatToolipForIncomeNeeded() {
+        tooltipText.textContent = `R${Number(rangeSlider.value).toLocaleString(
+          "en-ZA"
+        )}`;
+      }
+      /***************** END OF METHODS DEFINITION ******************/
+
+      /****************** ADD EVENT LISTENERS **********/
+      rangeSlider.addEventListener("input", onRangeSliderThumbDrag);
+      /**************** END OF EVENT LISTENERS *************/
+
+      /*********** METHODS CALLING ************/
+      generateLabels();
+      updateTooltip(formatToolipForIncomeNeeded);
+      addColorBulletsOnSliderTrack(savedPoints);
+      /************** END OF METHODs CALLING ************/
+    </script>
+  </body>
+</html>
