@@ -3,7 +3,7 @@ import { HttpEvent, HttpInterceptorFn, HttpRequest, HttpHandlerFn } from '@angul
 import { Observable } from 'rxjs';
 import { catchError, finalize, share } from 'rxjs/operators';
 
-const ongoingRequests = new Map<string, Observable<HttpEvent<unknown>>>();
+const ongoingRequests = new Map<string, { timestamp: number, observable: Observable<HttpEvent<unknown>> }>();
 
 export const deduplicationInterceptor: HttpInterceptorFn = (req: HttpRequest<unknown>, next: HttpHandlerFn) => {
   // Check for the custom header to bypass deduplication
@@ -15,10 +15,14 @@ export const deduplicationInterceptor: HttpInterceptorFn = (req: HttpRequest<unk
 
   // Create a unique key for the request based on URL, method, params, and body
   const requestKey = getRequestKey(req);
+  const currentTime = Date.now();
 
-  // Check if there is an ongoing request with the same key
+  // Check if there is an ongoing request with the same key within the last second
   if (ongoingRequests.has(requestKey)) {
-    return ongoingRequests.get(requestKey) as Observable<HttpEvent<unknown>>;
+    const { timestamp, observable } = ongoingRequests.get(requestKey)!;
+    if (currentTime - timestamp < 1000) {
+      return observable;
+    }
   }
 
   // Handle the request and store it in the ongoingRequests map
@@ -31,8 +35,8 @@ export const deduplicationInterceptor: HttpInterceptorFn = (req: HttpRequest<unk
     })
   );
 
-  // Store the request observable
-  ongoingRequests.set(requestKey, request$);
+  // Store the request observable with the current timestamp
+  ongoingRequests.set(requestKey, { timestamp: currentTime, observable: request$ });
   return request$;
 };
 
